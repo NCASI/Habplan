@@ -119,7 +119,7 @@ comPlot <- function(flow.data.1, flow.data.2, flow.data.3,
     guides(color = guide_legend(title = "Flow #"), fill = guide_legend(title = "Flow #"))
   #theme(legend.position = "none")
 
-  ggsave(file = paste0("./example/RCW/RCW/Outputs/Combined_flows.png"), width = 200, height = 120,
+  ggsave(file = paste0("./Combined_flows.png"), width = 200, height = 120,
          dpi = 600, units = "mm")
 
   return(f1.plot)
