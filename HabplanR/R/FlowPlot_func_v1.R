@@ -31,7 +31,7 @@ flowPlot <- function(flow.data, nyear){
     flow.list[i] <- tot.flow
   }
 
-  year <- c(1:35)
+  year <- c(1:nyear)
   flow <- t(flow.list)
   flow <- t(flow)
   f1.output <- cbind(year, flow)
