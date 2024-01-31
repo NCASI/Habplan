@@ -17,17 +17,14 @@ flowPlot <- function(flow.data, nyear){
   #Set the length below as the number of years in model
   flow.list <- vector(mode = "list", length = nyear)
 
-  #Format flow file to remove commas and extra column
-  #for (i in 1:ncol(flow.data)) {
-  #  flow.data[,i] <- gsub(",", "", flow.data[,i])
-  #}
-  #flow1 <- flow.data[,-1]
-
   flow1 <- flow.data
-  
+
   for (i in 1:length(flow.list)) {
-    std <- cbind(flow1[1], flow1[i+2], flow1[i+37])
+    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+2)])
     colnames(std) <- c("id", "year", "flow")
+    std$flow <- gsub('[,]', '', std$flow)
+    std$year <- gsub('[,]', '', std$year)
+    std$id <- gsub('[,]', '', std$id)
     std$flow <- as.numeric(std$flow)
     tot.flow <- sum(std$flow)
     flow.list[i] <- tot.flow
@@ -46,16 +43,17 @@ flowPlot <- function(flow.data, nyear){
   f1.plot <- ggplot(data = f1.output) +
     geom_line(aes(x = year, y = flow)) +
     geom_area(aes(x = year, y = flow), fill = "grey", alpha = 0.7) +
-    scale_x_continuous(expand = c(0, 0)) +
-    scale_y_continuous(expand = c(0, 0)) +
+    #geom_hline(yintercept = target, linetype = 2, color = "red") +
+    #geom_hline(yintercept = (target+th.hi), linetype = 2, color = "black") +
+    #geom_hline(yintercept = (target-th.lo), linetype = 2, color = "black") +
+    #scale_color_viridis_d() +
     ggtitle("Flow output over time") +
     xlab("Year") +
     ylab("Flow") +
     theme_classic() +
-    theme(legend.position = "none",
-         text = element_text(size=18))
+    theme(legend.position = "none")
 
-  ggsave(file = paste0("./Single_flow.png"), width = 200, height = 120,
+  ggsave(file = paste0("./example/RCW/RCW/Outputs/Single_flow.png"), width = 200, height = 120,
          dpi = 600, units = "mm")
 
   return(f1.plot)
