@@ -20,7 +20,7 @@ flowPlot <- function(flow.data, nyear){
   flow1 <- flow.data
 
   for (i in 1:length(flow.list)) {
-    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+2)])
+    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+3)])
     colnames(std) <- c("id", "year", "flow")
     std$flow <- gsub('[,]', '', std$flow)
     std$year <- gsub('[,]', '', std$year)
@@ -47,6 +47,8 @@ flowPlot <- function(flow.data, nyear){
     #geom_hline(yintercept = (target+th.hi), linetype = 2, color = "black") +
     #geom_hline(yintercept = (target-th.lo), linetype = 2, color = "black") +
     #scale_color_viridis_d() +
+    scale_x_continuous(expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0)) +
     ggtitle("Flow output over time") +
     xlab("Year") +
     ylab("Flow") +
