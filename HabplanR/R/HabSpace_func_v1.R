@@ -253,9 +253,9 @@ new.data <- new.data[ -c(10) ]
   sum.ptch <- ggplot() +
     geom_line(data = patch.sum, aes(x = order, y = sum.patch),
               group = year) +
-    ggtitle(paste0("Total number of patches")) +
+    ggtitle(paste0("Number of patches")) +
     xlab("Year") +
-    ylab("Total number of patches") +
+    ylab("Number of patches") +
     theme_classic() +
     theme(strip.background = element_blank())
 
