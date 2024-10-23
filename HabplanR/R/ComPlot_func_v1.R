@@ -27,7 +27,7 @@ comPlot <- function(flow.data.1, flow.data.2, flow.data.3,
   flow1 <- flow.data.1
 
   for (i in 1:length(flow.list.1)) {
-    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+2)])
+    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+3)])
     colnames(std) <- c("id", "year", "flow")
     std$flow <- gsub('[,]', '', std$flow)
     std$year <- gsub('[,]', '', std$year)
@@ -52,7 +52,7 @@ comPlot <- function(flow.data.1, flow.data.2, flow.data.3,
   flow1 <- flow.data.2
 
   for (i in 1:length(flow.list.2)) {
-    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+2)])
+    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+3)])
     colnames(std) <- c("id", "year", "flow")
     std$flow <- gsub('[,]', '', std$flow)
     std$year <- gsub('[,]', '', std$year)
@@ -77,7 +77,7 @@ comPlot <- function(flow.data.1, flow.data.2, flow.data.3,
   flow1 <- flow.data.3
 
   for (i in 1:length(flow.list.3)) {
-    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+2)])
+    std <- cbind(flow1[2], flow1[i+3], flow1[i+(nyear+3)])
     colnames(std) <- c("id", "year", "flow")
     std$flow <- gsub('[,]', '', std$flow)
     std$year <- gsub('[,]', '', std$year)
@@ -111,7 +111,8 @@ comPlot <- function(flow.data.1, flow.data.2, flow.data.3,
     #geom_hline(yintercept = (target-th.lo), linetype = 2, color = "black") +
     scale_color_viridis_d(option = "viridis", begin = 0.3, end = 0.6) +
     scale_fill_viridis_d(option = "viridis", begin = 0.3, end = 0.6) +
-    scale_x_continuous(breaks=seq(0,nyear,5)) +
+    scale_x_continuous(breaks=seq(0,nyear,5), expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0)) +
     ggtitle("Flow output over time") +
     xlab("Year") +
     ylab("Flow") +
